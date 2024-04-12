@@ -10,11 +10,15 @@ const UploadForm = ({ isLoggedIn, onFilesUploaded }) => {
   const [files, setFiles] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
+  console.log('UploadForm component rendered');
+
   const handleFileUpload = async (event) => {
+    console.log('handleFileUpload called');
     const selectedFiles = event.target.files;
     const fileObjects = Array.from(selectedFiles);
 
     try {
+      console.log('Uploading files to IPFS...');
       const results = await Promise.all(
         fileObjects.map((fileObject) => ipfs.add(fileObject))
       );
@@ -24,6 +28,9 @@ const UploadForm = ({ isLoggedIn, onFilesUploaded }) => {
         file,
         cid: cids[index],
       }));
+
+      console.log('Files uploaded to IPFS successfully');
+      console.log('Uploaded files:', uploadedFilesWithCIDs);
 
       setFiles(selectedFiles);
       setUploadedFiles(uploadedFilesWithCIDs);
@@ -52,6 +59,7 @@ const UploadForm = ({ isLoggedIn, onFilesUploaded }) => {
           </div>
           {files.length > 0 && (
             <div className="uploaded-files-container">
+              {/* Render the UploadedFiles component with the uploaded files */}
               <UploadedFiles files={files} />
             </div>
           )}

@@ -13,10 +13,17 @@ const EmotionDetectionModal = ({ uploadedFiles }) => {
                     console.log('Processing file:', uploadedFile.file.name); // Log the file being processed
 
                     const response = await fetch(`https://api.smartclick.ai/emotion-detection?url=https://ipfs.io/ipfs/${uploadedFile.cid}`);
-                    console.log('API response status:', response.status); // Log the API response status
 
-                    const data = await response.text();
-                    console.log('API response data:', data); // Log the raw API response data
+                    if (!response.ok) {
+                        console.error('API request failed with status:', response.status); // Log the API response status if it's not successful
+                        return {
+                            ...uploadedFile,
+                            emotionDetectionResult: `Error: ${response.statusText}`,
+                        };
+                    }
+
+                    const data = await response.json(); // Parse the API response as JSON
+                    console.log('API response data:', data); // Log the parsed API response data
 
                     return {
                         ...uploadedFile,
@@ -43,7 +50,7 @@ const EmotionDetectionModal = ({ uploadedFiles }) => {
                     {emotionDetectionResults.map((result, index) => (
                         <div key={index}>
                             <p>File: {result.file.name}</p>
-                            <pre>{result.emotionDetectionResult}</pre>
+                            <pre>{JSON.stringify(result.emotionDetectionResult, null, 2)}</pre>
                         </div>
                     ))}
                     <button onClick={() => setIsModalOpen(false)}>Close</button>
