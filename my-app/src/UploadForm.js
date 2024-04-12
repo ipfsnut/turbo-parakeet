@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ipfsClient from 'ipfs-http-client';
+import * as ipfsClient from 'ipfs-http-client';
 import UploadedFiles from './UploadedFiles';
 import './UploadForm.css';
 
