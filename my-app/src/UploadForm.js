@@ -1,9 +1,25 @@
+/**
+ * React component that provides a file upload functionality to the user.
+ * 
+ * The `UploadForm` component allows the user to select one or more files to be uploaded to IPFS using the NFT.Storage service. The selected files are displayed in the `UploadedFiles` component, and the user can then click the "Upload to IPFS" button to initiate the upload process.
+ * 
+ * The component uses the `NFTStorage` library to interact with the NFT.Storage service and upload the files. The `NFT_STORAGE_API_KEY` is loaded from the environment using the `dotenv` library.
+ * 
+ * @param {object} props - The component props.
+ * @param {boolean} props.isLoggedIn - Indicates whether the user is logged in.
+ * @param {function} props.onFilesUploaded - Callback function to be called when the files have been uploaded successfully.
+ * @returns {JSX.Element} The `UploadForm` component.
+ */
 import React, { useState } from 'react';
-import { create } from 'ipfs-http-client';
+import { NFTStorage } from 'nft.storage';
 import UploadedFiles from './UploadedFiles';
 import './UploadForm.css';
+import dotenv from 'react-dotenv';
 
-const ipfs = create({ url: 'http://localhost:5001' });
+dotenv.config();
+
+const NFT_STORAGE_API_KEY = dotenv.NFT_STORAGE_API_KEY;
+const nftStorage = new NFTStorage({ token: NFT_STORAGE_API_KEY });
 
 const UploadForm = ({ isLoggedIn, onFilesUploaded }) => {
   const [files, setFiles] = useState([]);
@@ -16,18 +32,12 @@ const UploadForm = ({ isLoggedIn, onFilesUploaded }) => {
   };
 
   const handleUploadToIPFS = async () => {
-    const cids = [];
-
-    for (const file of files) {
-      try {
-        const { cid } = await ipfs.add(file);
-        cids.push(cid.toString());
-      } catch (error) {
-        console.error('Error uploading file to IPFS:', error);
-      }
+    try {
+      const cids = await nftStorage.storeBlob(files);
+      onFilesUploaded(cids);
+    } catch (error) {
+      console.error('Error uploading files to IPFS:', error);
     }
-
-    onFilesUploaded(cids);
   };
 
   return (
