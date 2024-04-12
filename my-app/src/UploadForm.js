@@ -8,7 +8,7 @@ const ipfs = create({ url: 'http://vbf29om355d5h6e29bn3n2vvoc.ingress.akash-palm
 
 const UploadForm = ({ isLoggedIn, onFilesUploaded }) => {
   const [files, setFiles] = useState([]);
-  const [uploadedFiles, setUploadedFiles] = useState([]);
+
 
   console.log('UploadForm component rendered');
 
