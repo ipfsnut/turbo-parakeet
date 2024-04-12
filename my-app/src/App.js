@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from './Button';
 import UploadForm from './UploadForm';
-import UploadedFiles from './UploadedFiles';
+import EmotionDetectionModal from './EmotionDetectionModal';
 import './App.css';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState([]);
+
+  useEffect(() => {
+    console.log('App component rendered');
+  }, []);
 
   const handleLogin = () => {
     const username = prompt('Enter your username:');
@@ -21,8 +25,13 @@ function App() {
   };
 
   const handleFilesUploaded = (files) => {
+    console.log('Files uploaded:', files);
     setUploadedFiles(files);
   };
+
+  console.log('Rendering App component');
+  console.log('loggedIn:', loggedIn);
+  console.log('uploadedFiles:', uploadedFiles);
 
   return (
     <div className="App">
@@ -30,38 +39,13 @@ function App() {
         <h1>Welcome to Turbo-Parakeet, an AI user interface for the CAZ Lab of Texas Tech University.</h1>
         <p>Login to display upload link.</p>
         {!loggedIn && <Button onClick={handleLogin} />}
-        {loggedIn && <UploadForm isLoggedIn={loggedIn} onFilesUploaded={handleFilesUploaded} />}
-        <div>
-          <h2>
-            <img
-              src={`${process.env.PUBLIC_URL}/CAZLabLogo.png`}
-              alt="CAZ Lab Logo"
-              className="resized-image"
-            />
-            <a
-              href="https://www.depts.ttu.edu/psy/marshall-lab/#:~:text=Cognitive%20AnthroZoology%20Lab&text=Philip%20Marshall%2C%20research%20in%20the,breeds%20of%20dogs%20are%20studied."
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Cognitive AnthroZoology Lab
-            </a>
-          </h2>
-        </div>
-        <br />
-        <a
-          className="App-link"
-          href="https://www.depts.ttu.edu/psy/marshall-lab/#:~:text=Cognitive%20AnthroZoology%20Lab&text=Philip%20Marshall%2C%20research%20in%20the,breeds%20of%20dogs%20are%20studied."
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          TTU CAZ Lab
-        </a>
-        {uploadedFiles.length > 0 && (
-          <div>
-            <h2>Uploaded Files</h2>
-            <UploadedFiles files={uploadedFiles} />
-          </div>
+        {loggedIn && (
+          <>
+            <UploadForm isLoggedIn={loggedIn} onFilesUploaded={handleFilesUploaded} />
+            <EmotionDetectionModal uploadedFiles={uploadedFiles} />
+          </>
         )}
+        {/* ... (rest of the code) */}
       </header>
     </div>
   );
