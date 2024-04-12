@@ -7,7 +7,7 @@ const ipfs = ipfsClient({ url: 'https://ipfs.io/ipfs/12D3KooWMh9Aufe9Br9559iSpbU
 
 const UploadForm = ({ isLoggedIn, onFilesUploaded }) => {
   const [files, setFiles] = useState([]);
-  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [setUploadedFiles] = useState([]);
 
   console.log('UploadForm component rendered');
 
