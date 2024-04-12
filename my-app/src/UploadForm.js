@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import * as ipfsClient from 'ipfs-http-client';
-import UploadedFiles from './UploadedFiles';
 import './UploadForm.css';
 
 // Replace with the appropriate URL and credentials for your IPFS node or service
