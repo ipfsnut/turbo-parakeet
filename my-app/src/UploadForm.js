@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { create } from 'ipfs-http-client';
+import ipfsClient from 'ipfs-http-client';
 import UploadedFiles from './UploadedFiles';
 import './UploadForm.css';
 
 // Replace with the appropriate URL and credentials for your IPFS node or service
-const ipfs = create({ url: 'http://vbf29om355d5h6e29bn3n2vvoc.ingress.akash-palmito.org:32615/api/v0' });
+const ipfs = ipfsClient({ url: 'https://ipfs.io/ipfs/12D3KooWMh9Aufe9Br9559iSpbUACCwMtEFyR3Mmh8RLJFdLK6JE' });
 
 const UploadForm = ({ isLoggedIn, onFilesUploaded }) => {
   const [files, setFiles] = useState([]);
-
+  const [uploadedFiles, setUploadedFiles] = useState([]);
 
   console.log('UploadForm component rendered');
 
@@ -33,6 +33,7 @@ const UploadForm = ({ isLoggedIn, onFilesUploaded }) => {
       console.log('Uploaded files:', uploadedFilesWithCIDs);
 
       setFiles(selectedFiles);
+      setUploadedFiles(uploadedFilesWithCIDs);
       onFilesUploaded(uploadedFilesWithCIDs);
     } catch (error) {
       console.error('Error uploading files to IPFS:', error);
