@@ -33,7 +33,6 @@ const UploadForm = ({ isLoggedIn, onFilesUploaded }) => {
       console.log('Uploaded files:', uploadedFilesWithCIDs);
 
       setFiles(selectedFiles);
-      setUploadedFiles(uploadedFilesWithCIDs);
       onFilesUploaded(uploadedFilesWithCIDs);
     } catch (error) {
       console.error('Error uploading files to IPFS:', error);
