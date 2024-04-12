@@ -4,7 +4,7 @@ import UploadedFiles from './UploadedFiles';
 import './UploadForm.css';
 
 // Replace with the appropriate URL and credentials for your IPFS node or service
-const ipfs = ipfsClient({ url: 'https://ipfs.io/ipfs/12D3KooWMh9Aufe9Br9559iSpbUACCwMtEFyR3Mmh8RLJFdLK6JE' });
+const ipfs = ipfsClient({ url: 'https://ipfs.io/ipfs/12D3KooWMh9Aufe9Br9559iSpbUACCwMtEFyR3Mmh8RLJFdLK6JE:5001' });
 
 const UploadForm = ({ isLoggedIn, onFilesUploaded }) => {
   const [files, setFiles] = useState([]);
