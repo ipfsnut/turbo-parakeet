@@ -57,10 +57,16 @@ const UploadForm = ({ isLoggedIn, onFilesUploaded }) => {
             </label>
           </div>
           {files.length > 0 && (
-            <div className="uploaded-files-container">
-              {/* Render the UploadedFiles component with the uploaded files */}
-              <UploadedFiles files={files} />
+        <div className="uploaded-files-container">
+          <h2>Uploaded Files:</h2>
+          {files.map((file, index) => (
+            <div key={index}>
+              <a href={`https://ipfs.io/ipfs/${file.cid}`} target="_blank" rel="noopener noreferrer">
+                {file.file}
+              </a>
             </div>
+          ))}
+        </div>
           )}
         </>
       )}
