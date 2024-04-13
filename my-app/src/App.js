@@ -3,9 +3,9 @@ import Button from './Button';
 import UploadForm from './UploadForm';
 import EmotionDetectionModal from './EmotionDetectionModal';
 import './App.css';
-import CAZLabLogo from '../public/CAZLabLogo.png';
-import logo192 from '../public/logo192.png';
-import logo512 from '../public/logo512.png';
+import CAZLabLogo from './public/CAZLabLogo.png';
+import logo192 from './public/logo192.png';
+import logo512 from './public/logo512.png';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
