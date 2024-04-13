@@ -3,6 +3,9 @@ import Button from './Button';
 import UploadForm from './UploadForm';
 import EmotionDetectionModal from './EmotionDetectionModal';
 import './App.css';
+import CAZLabLogo from './assets/CAZLabLogo.png';
+import logo192 from './assets/logo192.png';
+import logo512 from './assets/logo512.png';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -36,16 +39,25 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Welcome to Turbo-Parakeet, an AI user interface for the CAZ Lab of Texas Tech University.</h1>
-        <p>Login to display upload link.</p>
-        {!loggedIn && <Button onClick={handleLogin} />}
+        <div className="logo-container">
+          <img src={CAZLabLogo} alt="CAZ Lab Logo" className="caz-lab-logo" />
+          <img src={logo192} alt="Logo 192" className="logo-192" />
+          <img src={logo512} alt="Logo 512" className="logo-512" />
+        </div>
+        <h1>Welcome to Turbo-Parakeet</h1>
+        <p>An AI user interface for the CAZ Lab of Texas Tech University</p>
+        {!loggedIn && (
+          <>
+            <p>Please log in to access the application.</p>
+            <Button onClick={handleLogin} />
+          </>
+        )}
         {loggedIn && (
           <>
             <UploadForm isLoggedIn={loggedIn} onFilesUploaded={handleFilesUploaded} />
             <EmotionDetectionModal uploadedFiles={uploadedFiles} />
           </>
         )}
-        {/* ... (rest of the code) */}
       </header>
     </div>
   );
