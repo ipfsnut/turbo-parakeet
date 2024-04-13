@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from './Button';
-import UploadForm from './UploadForm';
-import EmotionDetectionModal from './EmotionDetectionModal';
+// import UploadForm from './UploadForm';
+// import EmotionDetectionModal from './EmotionDetectionModal';
 import './App.css';
 import CAZLabLogo from './public/CAZLabLogo.png';
 import logo192 from './public/logo192.png';
@@ -54,8 +54,8 @@ function App() {
         )}
         {loggedIn && (
           <>
-            <UploadForm isLoggedIn={loggedIn} onFilesUploaded={handleFilesUploaded} />
-            <EmotionDetectionModal uploadedFiles={uploadedFiles} />
+            // <UploadForm isLoggedIn={loggedIn} onFilesUploaded={handleFilesUploaded} />
+           //  <EmotionDetectionModal uploadedFiles={uploadedFiles} />
           </>
         )}
       </header>
