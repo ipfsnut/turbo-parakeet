@@ -54,8 +54,7 @@ function App() {
         )}
         {loggedIn && (
           <>
-            // <UploadForm isLoggedIn={loggedIn} onFilesUploaded={handleFilesUploaded} />
-           //  <EmotionDetectionModal uploadedFiles={uploadedFiles} />
+
           </>
         )}
       </header>
