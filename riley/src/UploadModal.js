@@ -4,7 +4,7 @@ import { NFTStorage } from 'nft.storage';
 const UploadModal = ({ setUploadedCIDs }) => {
 
     // Get the NFT.Storage API key from the environment variables
-    const apiKey = process.env.REACT_APP_NFT_STORAGE_API_KEY;
+    const apiKey = process.env.NFT_STORAGE_API_KEY;
 
     // Create an instance of NFTStorage with the API key
     const nftstorage = new NFTStorage({ token: apiKey });

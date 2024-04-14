@@ -1,13 +1,18 @@
+/**
+ * The entry point of the React application. This file sets up the React root and renders the main App component.
+ * 
+ * The file imports necessary dependencies, configures the environment variables using `react-dotenv`, and renders the
+ * `<App />` component within a `<React.StrictMode>` wrapper.
+ * 
+ * The `reportWebVitals` function is also imported and can be used to measure performance metrics of the application.
+ */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'react-dotenv'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import dotenv from 'react-dotenv';
 
-dotenv.config();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
