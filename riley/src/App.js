@@ -44,15 +44,12 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <>
-                    <section>
-                      <h2>Turbo-Parakeet Upload</h2>
-                      {uploadedCIDs.length > 0 && <CIDModal uploadedCIDs={uploadedCIDs} />}
-                      <UploadModal setUploadedCIDs={setUploadedCIDs} /> {/* Pass setUploadedCIDs prop */}
-                      <CIDModal uploadedCIDs={uploadedCIDs} />
-                    </section>
-
-                  </>
+                  <section>
+                    <h2>Turbo-Parakeet Upload</h2>
+                    {uploadedCIDs.length > 0 && <CIDModal uploadedCIDs={uploadedCIDs} />}
+                    <UploadModal setUploadedCIDs={setUploadedCIDs} /> {/* Pass setUploadedCIDs prop */}
+                    <CIDModal uploadedCIDs={uploadedCIDs} />
+                  </section>
                 }
               />
             </Routes>
