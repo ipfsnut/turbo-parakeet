@@ -3,7 +3,6 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import UploadModal from './UploadModal';
 import CIDModal from './CIDModal';
-import EmotionDetectionModal from './EmotionDetectionModal'; // Import the EmotionDetectionModal component
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -53,10 +52,6 @@ function App() {
                       <CIDModal uploadedCIDs={uploadedCIDs} />
                     </section>
 
-                    <section>
-                      <h2>Emotion Detection</h2>
-                      <EmotionDetectionModal /> {/* Render the EmotionDetectionModal component */}
-                    </section>
                   </>
                 }
               />
