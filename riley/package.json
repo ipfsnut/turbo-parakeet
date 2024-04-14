@@ -1,16 +1,21 @@
 {
-  "name": "my-app",
+  "name": "riley",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "ipfs": "^0.66.1",
-    "ipfs-core": "^0.18.1",
+    "axios": "^1.6.8",
+    "bootstrap": "^5.3.3",
     "ipfs-http-client": "^60.0.1",
+    "nft.storage": "^7.1.1",
+    "rea": "^0.0.1",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.10.2",
     "react-dom": "^18.2.0",
+    "react-dotenv": "^0.1.3",
+    "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -39,7 +44,9 @@
     ]
   },
   "devDependencies": {
-    "dotenv": "^16.4.5",
-    "@babel/plugin-proposal-private-property-in-object": "^7.20.7"
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.2.5"
   }
 }
