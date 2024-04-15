@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
 import UploadModal from './UploadModal';
 import CIDModal from './CIDModal';
+import './App.css';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -42,16 +42,16 @@ function App() {
           {loggedIn && (
             <Routes>
               <Route
-                path="/"
-                element={
-                  <section>
-                    <h2>Turbo-Parakeet Upload</h2>
-                    {uploadedCIDs.length > 0 && <CIDModal uploadedCIDs={uploadedCIDs} />}
-                    <UploadModal setUploadedCIDs={setUploadedCIDs} /> {/* Pass setUploadedCIDs prop */}
-                    <CIDModal uploadedCIDs={uploadedCIDs} />
-                  </section>
-                }
-              />
+  path="/"
+  element={
+    <section>
+      <h2>Turbo-Parakeet Upload</h2>
+      <UploadModal setUploadedCIDs={setUploadedCIDs} />
+      {uploadedCIDs.length > 0 && <CIDModal uploadedCIDs={uploadedCIDs} />}
+    </section>
+  }
+/>
+
             </Routes>
           )}
         </main>
