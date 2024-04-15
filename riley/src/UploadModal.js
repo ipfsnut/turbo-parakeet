@@ -1,73 +1,51 @@
-import React, { useState, useRef } from 'react';
-import { NFTStorage } from 'nft.storage';
+import React, { useRef } from 'react';
+import axios from 'axios';
 
-const UploadModal = ({ setUploadedCIDs }) => {
+const UploadModal = () => {
+  const fileInputRef = useRef(null);
 
-    // Get the NFT.Storage API key from the environment variables
-    const apiKey = process.env.NFT_STORAGE_API_KEY;
+  const handleFileUpload = async (event) => {
+    const files = event.target.files;
 
-    // Create an instance of NFTStorage with the API key
-    const nftstorage = new NFTStorage({ token: apiKey });
+    if (files.length === 0) {
+      console.error('No files were selected for upload.');
+      return;
+    }
 
-    const [folderPath, setFolderPath] = useState('');
-    const fileInputRef = useRef(null);
+    const formData = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      formData.append('files', files[i]);
+    }
 
-    const handleFolderUpload = async (event) => {
-        try {
-            const folderFiles = event.target.files;
-            // Check if any files were selected
-            if (folderFiles.length === 0) {
-                console.error('No files were selected for upload.');
-                return;
-            }
+    try {
+      await axios.post('/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('Files uploaded successfully');
+    } catch (err) {
+      console.error('Error uploading files:', err);
+    }
+  };
 
-            // Upload the folder to NFT.Storage and get the CID
-            const folderCID = await nftstorage.storeDirectory(folderFiles);
+  const handleFileInputClick = () => {
+    fileInputRef.current.click();
+  };
 
-            // Get the contents of the uploaded folder
-            const folderContents = await nftstorage.list(folderCID);
-
-            // Check if the folder contents were retrieved successfully
-            if (folderContents.length === 0) {
-                console.error('Failed to retrieve folder contents after upload.');
-                return;
-            }
-
-            // Map the folder contents to an array of objects with name and CID
-            const cids = folderContents.map((file) => ({
-                name: file.name,
-                cid: `https://nftstorage.link/ipfs/${file.cid}`,
-            }));
-
-            // Update the parent component with the uploaded CIDs
-            setUploadedCIDs(cids);
-            // Update the local state with the folder CID
-            setFolderPath(folderCID);
-        } catch (error) {
-            console.error('Error uploading folder:', error);
-        }
-    };
-
-    const handleFileInputClick = () => {
-        // When the button is clicked, trigger the file input
-        fileInputRef.current.click();
-    };
-
-    return (
-        <div>
-            <h2>Upload Folder</h2>
-            <button onClick={handleFileInputClick}>Select Folder</button>
-            <input
-                type="file"
-                ref={fileInputRef}
-                onChange={handleFolderUpload}
-                webkitdirectory="true"
-                directory=""
-                style={{ display: 'none' }}
-            />
-            {folderPath && <p>Folder CID: {folderPath}</p>}
-        </div>
-    );
+  return (
+    <div>
+      <h2>Upload Files</h2>
+      <button onClick={handleFileInputClick}>Select Files</button>
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleFileUpload}
+        multiple
+        style={{ display: 'none' }}
+      />
+    </div>
+  );
 };
 
 export default UploadModal;

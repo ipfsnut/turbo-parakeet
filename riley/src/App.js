@@ -1,23 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import UploadModal from './UploadModal';
-import CIDModal from './CIDModal';
+import EmotionDetectionModal from './EmotionDetectionModal';
+import SmartClickModal from './SmartClickModal';
+import axios from 'axios';
 import './App.css';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [uploadedCIDs, setUploadedCIDs] = useState([]);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleLogin = () => {
-    const username = prompt('Enter your username:');
-    const password = prompt('Enter your password:');
+    setLoggedIn(true);
+  };
 
-    if (username === 'admin' && password === 'hardpassword') {
-      setLoggedIn(true);
-      alert('Login successful!');
-    } else {
-      alert('Invalid username or password.');
-    }
+  useEffect(() => {
+    const fetchUploadedFiles = async () => {
+      try {
+        const response = await axios.get('/files');
+        setUploadedFiles(response.data);
+      } catch (err) {
+        console.error('Error fetching uploaded files:', err);
+      }
+    };
+
+    fetchUploadedFiles();
+  }, []);
+
+  const handleFileClick = (file) => {
+    setSelectedFile(file);
   };
 
   return (
@@ -46,8 +58,32 @@ function App() {
                 element={
                   <section>
                     <h2>Turbo-Parakeet Upload</h2>
-                    <UploadModal setUploadedCIDs={setUploadedCIDs} />
-                    {uploadedCIDs.length > 0 && <CIDModal uploadedCIDs={uploadedCIDs} />}
+                    <UploadModal />
+                    {uploadedFiles.length > 0 && (
+                      <div>
+                        <h3>Uploaded Files:</h3>
+                        <ul>
+                          {uploadedFiles.map((file, index) => (
+                            <li key={index} onClick={() => handleFileClick(file)}>
+                              {file.name}
+                              {file.type.startsWith('image/') && (
+                                <img
+                                  src={`/uploads/${file.path}`}
+                                  alt={file.name}
+                                  style={{ maxWidth: '100px', maxHeight: '100px' }}
+                                />
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {selectedFile && (
+                      <>
+                        <EmotionDetectionModal file={selectedFile} />
+                        <SmartClickModal uploadedFiles={uploadedFiles} />
+                      </>
+                    )}
                   </section>
                 }
               />
