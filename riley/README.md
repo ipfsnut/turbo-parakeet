@@ -1,3 +1,19 @@
+# Turbo-Parakeet 
+
+Turbo-Parakeet is an application designed for the Texas Tech University Cognitive Anthrozoology lab by a first-year Ph.D student. The concept is an interface between ordinary people and an API that enables users to analyze images of faces for emotion, managing to be both lightweight and simple to use. 
+
+Create React App, Node.js, and Express will be used to create an IPFS application that allows a user to login, upload files (images of faces for now), pin those files to IPFS, retrieve the CID of each file, and then, at a rate of 20/minute or less, send each image to the SmartClick API (or other API in the future) and display the results returned from SmartClick to the user. The results will appear in a modal and a CSV file that the user can download. After the user logs off, the pins to IPFS documents are removed and the server cache is cleared - the application is reset and ready for the next user. No personal data has been compromised or leaked. 
+
+## Relevant technologies:
+
+Create React App: sets up React front end
+Express: middleware
+Node.js: Node backend
+IPFS: image storage, image URL/CID generation
+SmartClick Emotion Detection API: Reads emotion in images
+(additional API): does something similar but hits non-SmartClick endpoint etc
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
