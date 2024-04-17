@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Turbo-Parakeet v.1 is a Netlify serverless React application. The project's GitHub repository can be found at: https://github.com/ipfsnut/turbo-parakeet/blob/main/riley/README.md
+Turbo-Parakeet v.1 is a Netlify serverless React application. The project's GitHub repository can be found at: https://github.com/ipfsnut/turbo-parakeet/
 
 ## Netlify Documentation
 
