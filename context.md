@@ -118,3 +118,35 @@ Since this is a monorepo setup, the Netlify CLI prompted us to select the specif
 By following these steps, we were able to set up and use the Netlify CLI within the GitPod environment, allowing us to test and develop our Netlify Functions locally before deploying.
 
 # note from EpicDylan: I'm having to feed this Claude3 instance the docs from the websites where this is explained, but it seems to be doing an adequate job. my goal with this file is to keep it honest and track progress over time so that we can objectively evaluate the effectiveness of this copilot program. 
+
+
+
+# Hypothesis and Approach
+
+## Hypothesis
+By integrating the React Dropzone component with a Netlify Function for file uploads, we can create a minimal working example that allows users to upload files, which will be temporarily stored in the Netlify serverless storage during the user's session.
+
+## Approach
+1. Install the React Dropzone package in the Create React App project.
+2. Create a new Netlify Function file (e.g., `upload.js`) in the `functions` directory to handle file uploads and save them to the Netlify serverless storage.
+3. Modify the `App.js` file to:
+   - Import the Dropzone component from the react-dropzone package.
+   - Add the Dropzone component to the JSX.
+   - Implement a `handleFileDrop` function to handle dropped files.
+   - Make a fetch request to the Netlify Function (created in step 2) from the `handleFileDrop` function, passing the dropped file data.
+4. Test the integration locally using the Netlify dev server (`netlify dev`).
+
+By following this approach, we aim to create a minimal working example that demonstrates the integration of the React Dropzone component with a Netlify Function for file uploads, allowing us to verify the setup and functionality before potentially integrating it into a more complex application structure.
+
+
+# Progress Update
+
+We have made significant progress in our effort to create a minimal working example that integrates the React Dropzone component with a Netlify Function for file uploads.
+
+Specifically, we have created the `upload.js` file and placed it within the `functions` directory at the root of the project. This file contains the code for the Netlify Function that will handle file uploads and save them to the Netlify serverless storage during the user's session.
+
+The `upload.js` file imports the necessary modules (`formidable` and `fs`) and defines an asynchronous `handler` function that will be executed when the Netlify Function is invoked. This function parses the incoming file upload data, copies the file to a temporary directory (`/tmp/`), and resolves or rejects a Promise based on the success or failure of the file upload process.
+
+At this stage, we have successfully created the Netlify Function file without encountering any issues or explosions. The next step will be to modify the `App.js` file to include the React Dropzone component, implement the `handleFileDrop` function, and make a fetch request to the Netlify Function (`upload.js`) from the `handleFileDrop` function, passing the dropped file data.
+
+By completing these remaining steps, we will have a minimal working example that demonstrates the integration of the React Dropzone component with a Netlify Function for file uploads, allowing us to verify the setup and functionality before potentially integrating it into a more complex application structure.
