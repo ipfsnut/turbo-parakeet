@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "buffer": "^6.0.3",
-    "react-dotenv": "^0.1.3"
-  }
-}
