@@ -13,6 +13,8 @@ exports.handler = async (event) => {
         return;
       }
 
+      console.log('Parsed form data:', fields, files);
+
       const file = files.file; // Assuming the file field is named 'file'
 
       if (!file) {
