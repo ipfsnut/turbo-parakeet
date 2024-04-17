@@ -1,0 +1,24 @@
+{
+  "name": "turbo-parakeet",
+  "version": "1.0.0",
+  "description": "https://github.com/ipfsnut/turbo-parakeet/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ipfsnut/turbo-parakeet.git#main"
+  },
+  "keywords": [
+    "ai",
+    "emotion",
+    "research"
+  ],
+  "author": "ipfsnut",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ipfsnut/turbo-parakeet/issues"
+  },
+  "homepage": "https://github.com/ipfsnut/turbo-parakeet/tree/main#readme"
+}
